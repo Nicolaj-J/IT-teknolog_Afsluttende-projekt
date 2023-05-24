@@ -1,0 +1,44 @@
+[
+      {
+            "Host name": "test-server",
+            "Resource group": "TEST-GROUP",
+            "OS": "Linux",
+            "OS type": "0001-com-ubuntu-server-focal",
+            "Priviate IP(S)": "192.168.1.4",
+            "Public IP(S)": "20.91.215.14",
+            "Open Ports": [
+                  [
+                        "SSH",
+                        "22"
+                  ]
+            ]
+      },
+      {
+            "Host name": "test-server-2",
+            "Resource group": "TEST-GROUP",
+            "OS": "Windows",
+            "OS type": "WindowsServer",
+            "Priviate IP(S)": "192.168.1.5",
+            "Public IP(S)": "20.107.188.38",
+            "Open Ports": [
+                  [
+                        "RDP",
+                        "3389"
+                  ]
+            ]
+      },
+      {
+            "Host name": "test-server-3",
+            "Resource group": "TEST-GROUP",
+            "OS": "Linux",
+            "OS type": "RHEL",
+            "Priviate IP(S)": "10.0.0.4",
+            "Public IP(S)": "20.91.215.14",
+            "Open Ports": [
+                  [
+                        "SSH",
+                        "22"
+                  ]
+            ]
+      }
+]
