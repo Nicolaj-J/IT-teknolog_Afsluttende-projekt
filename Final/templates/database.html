@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Raport database</h1>
+<table id="table" class="sortable">
+  <!--Sortable gør at vi kan sortere kolonne ovreskrifter -->
+  <thead>
+      <tr>
+            <!--Overskrift på tabel kolonnerne -->
+            <th>Firma</th>
+            <th>Dato for scanning</th>
+            <th>serienummer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in all_data%}
+            <tr class="item p-row" onclick="openForm()"> 
+                <td class="firma">{{item[0]}}</td> 
+                <td class="dato">{{item[1]}}</td> 
+                <td class="serienummer">{{item[2]}}</td> 
+            </tr>
+        {%endfor%}
+    </tbody>
+    </table>
+  <div class="form-popup" id="myForm">
+    <!-- popop vindue til rettelse a pris -->
+    <form action="/database" class="form-container" method="post">
+        <h1 for="company" ></h1>
+        <h2 for="serienummer"></h2>
+        
+        <div class="btn-gr">
+            <input type="hidden" name="serienummer" hidden />
+            <button type="submit" class="btn">Download</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </div>
+        
+    </form>
+  </div>
+  <script type="text/javascript">
+    const row = document.querySelectorAll(".p-row");
+
+
+    function sendToForm(company,serienummer) {
+      // Sender informationen fra rækken over til pop op vinduet
+      document.querySelector('input[name="serienummer"]').value = serienummer;
+      document.body.querySelector("h1[for='company']").innerHTML = company;
+      document.body.querySelector("h2[for='serienummer']").innerHTML = serienummer;
+    }
+
+    row.forEach((element) => {
+      // Lytter på hver row efter clicks
+        element.addEventListener("click", (e) => {
+          //Hvis der bliver clicket trækker den information ud af rækken
+            const company = element.querySelector(".firma").innerHTML;
+            const serienummer = element.querySelector(".serienummer").innerHTML;
+            sendToForm(company,serienummer);
+        });
+     });
+    </script>
+
+    <script>
+      //Funktioner til at åbne og lukke pop up vinduet(om det er hidden er ej)
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+    </script>
+
+{% endblock %}

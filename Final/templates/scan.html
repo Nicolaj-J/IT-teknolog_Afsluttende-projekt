@@ -1,0 +1,44 @@
+{% extends "layout.html" %}{% block content %}
+<div class="container">
+  <form id="exportForm" action="/scan" method="POST">
+    <div class="header"></div>
+    <div class="main">
+        <div class="form-group">
+          <label for="customer">Kundenavn/Firmanavn:</label>
+          <input type="text" id="customer" name="customer" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="other-ip">Ekskluder anden ip</label>
+          <input type="text" id="other-ip" name="other-ip" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <input type="checkbox" id="own-ip" name="own-ip">
+          <label for="own-ip">Ekskluder egen ip</label>
+
+        </div>
+        <div class="form-group">
+          <input type="checkbox" id="ports" name="ports">
+          <label for="ports">Port scan</label>
+          <input type="text" id="port-range" name="port-range" class="form-control" placeholder="Port range: 1-65535">
+          <input type="text" id="port-speed" name="port-speed" class="form-control" placeholder="Port scan speed: T1-T5">
+        </div>
+        <div class="form-group">
+          <input type="checkbox" id="os" name="os">
+          <label for="os">OS detection</label>
+        </div>
+        
+
+    </div>
+    <div class="azure">
+      <h2>Azure credentials</h2>
+        <input type="text" id="client-id" name="client-id" placeholder="Client ID"><br>
+        <input type="text" id="tenant-id" name="tenant-id" placeholder="Tenant ID"><br>
+        <input type="text" id="secret-value" name="secret-value" placeholder="Secret Value"><br>
+        <input type="text" id="subscription-id" name="subscription-id" placeholder="Subscription ID"><br>
+    </div>
+    <button type="submit" class="btn btn-primary">Start Scan</button>
+  </form>
+  </div>
+{% endblock %}

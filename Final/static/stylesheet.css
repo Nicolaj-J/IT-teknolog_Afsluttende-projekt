@@ -1,0 +1,112 @@
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  
+  /* The popup form - hidden by default */
+  .form-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    background-color: white;
+    border: 3px solid #858585;
+    z-index: 9;
+  }
+  .form-container h1[for=item]{
+    text-align: center;
+    white-space: nowrap ;
+    width: 100%;
+  }
+  /* Add styles to the form container */
+  .form-container {
+    padding: 10px;
+    width: 100%;
+  }
+  
+  /* Full-width input fields */
+  .form-container input[type=text]{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: 3px solid #858585;
+  }
+  
+  /* When the inputs get focus, do something */
+  .form-container input[type=text]:focus, .form-container :focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  form-container input[type=text]{
+    border: 3px solid #858585;
+  }
+  /* Set a style for the submit/login button */
+  .form-container .btn {
+    background-color: #919191;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+  .btn-gr:after {
+    content: “”;
+    width: 100%;
+    clear: both;
+    display:inline-block;
+    }
+  /* Add a red background color to the cancel button */
+  
+  /* Add some hover effects to buttons */
+  .form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+  }
+  
+  .red {color:red}
+  .orange {color:orange}
+  .green {color:green}
+  
+  .under-limit { background-color: red; }
+  .over-limit { background-color: green;}
+  .close-limit { background-color: yellow;}
+  .returvare { background-color: rgb(0, 0, 0);}
+  
+  .btn-group button {
+    background-color: #a3a3a3f8; /* Green background */
+    border: 1px solid rgba(255, 255, 255, 0.418); /* Green border */
+    color: rgb(0, 0, 0); /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+  }
+  
+  .btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+  }
+  
+  /* Clear floats (clearfix hack) */
+  .btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: #ffffff;
+  }

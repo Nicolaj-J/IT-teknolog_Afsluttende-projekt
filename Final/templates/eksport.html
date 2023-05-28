@@ -1,0 +1,13 @@
+{% extends "layout.html" %}{% block content %}
+<label>Vælg firma</label>
+<form action="/eksport" method="POST">
+<div>
+    <select name="report_company" id="report_company">
+        {% for i in reports%}
+            <option value={{i}}>{{i}}</option>
+        {% endfor%}
+    </select>
+    <button type="submit" class="btn">Lav rapport</button>
+</div>
+</form>
+{% endblock %}
