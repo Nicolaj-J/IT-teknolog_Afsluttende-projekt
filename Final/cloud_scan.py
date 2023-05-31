@@ -160,7 +160,7 @@ def export_azure_info(
         # DICTIONARY ADDED TO LIST
         result_list.append(dic)
 
-    # OUTPUT FILED CREATED AND OPENED FOR WRITING
+    # OUTPUT FILE CREATED AND OPENED FOR WRITING
     output = open(f"final/scan-results/{company_name}_cloud_scan.json", "w")
     # RESULT LIST PLACED IN OUTPUT FILE
     json.dump(result_list, output, indent=6)
