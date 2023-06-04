@@ -67,8 +67,8 @@ def eksport():
     """
     -> eksport.html
     """
-    json_files = os.listdir("final/scan-results")
-    diagrams = os.listdir("final/network_diagrams")
+    json_files = os.listdir("/home/pi/Documents/final/scan-results")
+    diagrams = os.listdir("/home/pi/Documents/final/network_diagrams")
     report_list = []
     for i in diagrams:
         for x in json_files:
@@ -79,15 +79,15 @@ def eksport():
         company = request.form.get("report_company")
         print(company)
         docx_creation.report_generation(company_name=company)
-        os.remove(f"final/network_diagrams/{company}_local_diagram.png")
-        os.remove(f"final/scan-results/{company}_local_scan.json")
+        os.remove(f"/home/pi/Documents/final/network_diagrams/{company}_local_diagram.png")
+        os.remove(f"/home/pi/Documents/final/scan-results/{company}_local_scan.json")
         try:
-            os.remove(f"final/network_diagrams/{company}_cloud_diagram.png")
-            os.remove(f"final/scan-results/{company}_cloud_scan.json")
+            os.remove(f"/home/pi/Documents/final/network_diagrams/{company}_cloud_diagram.png")
+            os.remove(f"/home/pi/Documents/final/scan-results/{company}_cloud_scan.json")
         except:
             pass
         p1 = mongo_connection.mongodb_control()
-        p1.docx_upload(file_path=f"final/generated_report/{company}_network_scan.docx", costumer_name=company)
+        p1.docx_upload(file_path=f"/home/pi/Documents/final/generated_report/{company}_network_scan.docx", costumer_name=company)
         return render_template('eksport.html', reports=report_list)
     else:
         return render_template('eksport.html', reports=report_list)
@@ -98,8 +98,8 @@ def database():
     """
     -> database.html
     """
-    for file in os.listdir(r"final\file_to_send"):
-        os.remove(f"final/file_to_send/{file}")
+    for file in os.listdir(r"/home/pi/Documents/final/file_to_send"):
+        os.remove(f"/home/pi/Documents/final/file_to_send/{file}")
     p1 = mongo_connection.mongodb_control()
     if request.method == 'POST':
         path = p1.docx_download(request.form.get("serienummer"))

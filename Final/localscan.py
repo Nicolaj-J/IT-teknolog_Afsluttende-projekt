@@ -7,7 +7,8 @@ import netifaces
 import mac_vendor_lookup
 import psutil
 
-nmap_path = [r"D:\Utility\Nmap\nmap.exe"]
+#nmap_path = [r"D:\Utility\Nmap\nmap.exe"]
+nmap_path = [r"/usr/bin/nmap"]
 nmScan = nmap.PortScanner(nmap_search_path=nmap_path)
 current_folder = os.getcwd()
 
@@ -167,5 +168,5 @@ def network_scan(target_network=f'{get_default_gateway()}/24',
         except:
             print("failed")
             continue
-    with open(f"{current_folder}/final/scan-results/{company_name}_local_scan.json", "w") as outfile:
+    with open(f"{current_folder}/scan-results/{company_name}_local_scan.json", "w") as outfile:
         outfile.write(json.dumps(clients))

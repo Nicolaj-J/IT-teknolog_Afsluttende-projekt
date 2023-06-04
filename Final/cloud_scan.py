@@ -14,11 +14,11 @@ def export_azure_info(
     """
     This function establishes a connection to Azure using the Azure SDK compute mgmt and network mgmt libraries.
     The function finds information associated to every virtual machine in Azure which is then exported to a JSON file.
-    client_id: str = ""
-    secret: str = ""
-    tentant: str = ""
-    sub: str = ""
-    company_name: str = ""
+    client_id="",
+    secret="",
+    tentant="",
+    sub="",
+    company_name=""
     """
 
     # CREDENTIALS FOR AZURE DEFINED
@@ -36,7 +36,7 @@ def export_azure_info(
     # NETWORK MNGT CLIENT OBJECT CREATED
     network_client = NetworkManagementClient(credentials, subscription_id)
 
-    # COMPUTE CLIENT OBJACT USED TO QUERY ALL VM'S
+    # COMPUTE CLIENT OBJECT USED TO QUERY ALL VM'S
     vm_list = compute_client.virtual_machines.list_all()
 
     print("FOUND THE FOLLOWING VM's:")
@@ -60,16 +60,16 @@ def export_azure_info(
         os_type = vm.storage_profile.image_reference.offer
 
         # MATCH OS TYPE TO INCLUDE THE WORD SERVER
-        if re.match(os_type, "server"):
+        if re.search("Server", os_type) or re.search("server", os_type):
             device_type = "Server"
 
         # MATCH OS TYPE TO INCLUDE WINDOWS OR DESKTOP
-        elif re.match(os_type, "windows") or re.match(os_type, "desktop"):
+        elif re.search("Windows", os_type) or re.match("desktop", os_type):
             device_type = "Workstation"
 
         # SET DEFAULT TO UNKNOWN IF NO MATCHES WHERE FOUND
         else:
-            device_type = "Unknwon"
+            device_type = "Not identified"
 
         print(f"VM OS: {os}")
         print(f"OS TYPE: {os_type}")
@@ -161,7 +161,7 @@ def export_azure_info(
         result_list.append(dic)
 
     # OUTPUT FILE CREATED AND OPENED FOR WRITING
-    output = open(f"final/scan-results/{company_name}_cloud_scan.json", "w")
+    output = open(f"/home/pi/Documents/final/scan-results/{company_name}_cloud_scan.json", "w")
     # RESULT LIST PLACED IN OUTPUT FILE
     json.dump(result_list, output, indent=6)
     # FILE CLOSED

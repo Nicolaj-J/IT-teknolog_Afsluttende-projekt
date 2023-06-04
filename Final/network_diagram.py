@@ -10,14 +10,14 @@ def make_local_diagram(company_name=""):
     Json file have to be saved in scan-results as local-scan.json
     """
 
-    with open(f"final/scan-results/{company_name}_local_scan.json") as f:
+    with open(f"/home/pi/Documents/final/scan-results/{company_name}_local_scan.json") as f:
         data = json.load(f)
     icons = {
-        "router": r"final\network-topologi-images\cisco-symbols\router.jpg",
-        "switch": r"final\network-topologi-images\cisco-symbols\layer 2 remote switch.jpg",
-        "PC": r"final\network-topologi-images\cisco-symbols\workstation.jpg",
-        "Not identified": r"final\network-topologi-images\cisco-symbols\host.jpg",
-        "Server": r"final\network-topologi-images\cisco-symbols\fileserver.jpg"
+        "router": r"/home/pi/Documents/final/network-topologi-images/cisco-symbols/router.jpg",
+        "switch": r"/home/pi/Documents/final/network-topologi-images/cisco-symbols/layer 2 remote switch.jpg",
+        "PC": r"/home/pi/Documents/final/network-topologi-images/cisco-symbols/workstation.jpg",
+        "Not identified": r"/home/pi/Documents/final/network-topologi-images/cisco-symbols/host.jpg",
+        "Server": r"/home/pi/Documents/final/network-topologi-images/cisco-symbols/fileserver.jpg"
     }
     images = {k: PIL.Image.open(fname) for k, fname in icons.items()}
     G = nx.Graph()
@@ -56,7 +56,7 @@ def make_local_diagram(company_name=""):
             icon_size])
         a.imshow(G.nodes[n]["image"])
         a.axis("off")
-    plt.savefig(f"final/network_diagrams/{company_name}_local_diagram.png",
+    plt.savefig(f"/home/pi/Documents/final/network_diagrams/{company_name}_local_diagram.png",
                 format="PNG")
 
 
@@ -65,31 +65,31 @@ def make_cloud_diagram(company_name=""):
     Creates cloud topologi map from json file.
     Json file have to be saved in scan results as cloud-scan.json
     """
-    with open(f"final/scan-results/{company_name}_cloud_scan.json") as f:
+    with open(f"/home/pi/Documents/final/scan-results/{company_name}_cloud_scan.json") as f:
         data = json.load(f)
     icons = {
-        "router": r"final\network-topologi-images\cisco-symbols\router.jpg",
-        "cloud": r"final\network-topologi-images\cisco-symbols\cloud.jpg",
-        "switch": r"final\network-topologi-images\cisco-symbols\layer 2 remote switch.jpg",
-        "PC": r"final\network-topologi-images\cisco-symbols\workstation.jpg",
-        "Not identified": r"final\network-topologi-images\cisco-symbols\host.jpg",
-        "Server": r"final\network-topologi-images\cisco-symbols\fileserver.jpg"
+        "router": r"/home/pi/Documents/final/network-topologi-images/cisco-symbols/router.jpg",
+        "cloud": r"/home/pi/Documents/final/network-topologi-images/cisco-symbols/cloud.jpg",
+        "switch": r"/home/pi/Documents/final/network-topologi-images/cisco-symbols/layer 2 remote switch.jpg",
+        "PC": r"/home/pi/Documents/final/network-topologi-images/cisco-symbols/workstation.jpg",
+        "Not identified": r"/home/pi/Documents/final/network-topologi-images/cisco-symbols/host.jpg",
+        "Server": r"/home/pi/Documents/final/network-topologi-images/cisco-symbols/fileserver.jpg"
     }
     images = {k: PIL.Image.open(fname) for k, fname in icons.items()}
     G = nx.Graph()
     G.add_node("cloud", image=images["cloud"])
     for i in range(len(data)):
-        if data[i]["Device_type"] == "Workstation":
+        if data[i]["device_type"] == "Workstation":
             print(1)
             G.add_node(f"PC_{i}", image=images["PC"])
             G.add_edge(f"cloud", f"PC_{i}")
     for i in range(len(data)):
-        if data[i]["Device_type"] == "Not identified":
+        if data[i]["device_type"] == "Not identified":
             print("2")
             G.add_node(f"device_{i}", image=images["Not identified"])
             G.add_edge(f"cloud", f"device_{i}")
     for i in range(len(data)):
-        if data[i]["Device_type"] == "Server":
+        if data[i]["device_type"] == "Server":
             print("3")
             G.add_node(f"server_{i}", image=images["Server"])
             G.add_edge(f"cloud", f"server_{i}")
@@ -119,5 +119,5 @@ def make_cloud_diagram(company_name=""):
         print(G.nodes)
         a.imshow(G.nodes[n]["image"])
         a.axis("off")
-    plt.savefig(f"final/network_diagrams/{company_name}cloud_diagram.png",
+    plt.savefig(f"/home/pi/Documents/final/network_diagrams/{company_name}_cloud_diagram.png",
                 format="PNG")

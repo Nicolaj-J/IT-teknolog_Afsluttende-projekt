@@ -14,7 +14,7 @@ class mongodb_control():
         self.client = MongoClient(
             self.uri,
             tls=True,
-            tlsCertificateKeyFile='final\mongodb_certificate\X509-cert-1903629998838294749.pem')
+            tlsCertificateKeyFile='/home/pi/Documents/final/mongodb_certificate/X509-cert-1903629998838294749.pem')
         self.db = self.client['Network_costumers']
         self.collection = self.db['Network_scans']
         self.date = datetime.datetime.now().strftime('%Y-%m-%d')
@@ -72,11 +72,11 @@ class mongodb_control():
         return network_list
 
     def docx_upload(self,
-                    file_path=r"final\generated_report\network_scan.docx",
+                    file_path=r"/home/pi/Documents/final/generated_report/network_scan.docx",
                     costumer_name=""):
         """
         Uploads a reports to mongodb
-        file_path: str = r'final\generated_report\network_scan.docx'
+        file_path: str = r'/home/pi/Documents/final/generated_report/network_scan.docx'
         costumer_name: str = ''
         """
         file_data = open(file_path, "rb")
@@ -100,7 +100,7 @@ class mongodb_control():
         costumer_name = data["costumer_name"]
         date = data["date"]
         outputdata = fs.get(my_id).read()
-        downloads_path = f"{self.current_folder}/final/file_to_send/{costumer_name}-{date}.docx"
+        downloads_path = f"{self.current_folder}/file_to_send/{costumer_name}-{date}.docx"
         output = open(downloads_path, "wb")
         output.write(outputdata)
         output.close()
